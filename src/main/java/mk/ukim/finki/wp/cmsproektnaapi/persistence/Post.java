@@ -1,6 +1,11 @@
 package mk.ukim.finki.wp.cmsproektnaapi.persistence;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,9 +28,10 @@ public class Post {
     public String category;
 
     @Column(nullable = false)
-    // @JsonSerialize(using=)
-    //    public LocalDateTime date;
-    public String date;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    public LocalDateTime date;
 
     @Column
     public String imageFileName;
@@ -37,7 +43,7 @@ public class Post {
 
     }
 
-    public Post(String title, String content, String category, String date, String imageFileName, String tags) {
+    public Post(String title, String content, String category, LocalDateTime date, String imageFileName, String tags) {
         this.title = title;
         this.content = content;
         this.category = category;
