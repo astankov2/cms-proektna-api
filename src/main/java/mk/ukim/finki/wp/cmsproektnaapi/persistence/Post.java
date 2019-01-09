@@ -24,7 +24,8 @@ public class Post {
 
     @Column(nullable = false)
     // @JsonSerialize(using=)
-    public LocalDateTime date;
+    //    public LocalDateTime date;
+    public String date;
 
     @Column
     public String imageFileName;
