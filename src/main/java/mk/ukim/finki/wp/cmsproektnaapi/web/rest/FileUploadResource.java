@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(value = "http://localhost:3000", allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping(value = "/files", produces = MediaType.APPLICATION_JSON_VALUE)
 public class FileUploadResource {
     FileStorageService fileStorageService;

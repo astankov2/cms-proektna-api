@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(value = "http://localhost:3000", allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping(value = "/posts", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PostResource {
     PostService postService;
